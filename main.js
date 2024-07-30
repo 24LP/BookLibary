@@ -37,17 +37,11 @@ function submit() {
   let title = document.getElementById("title").value;
   let author = document.getElementById("author").value;
   let isbn = document.getElementById("isbn").value;
-  let del = `<td><button id="del">X</button></td>`;
-
-  console.log(title);
-  console.log(author);
-  console.log(isbn);
 
   const book = {
     title,
     author,
     isbn,
-    del,
   };
 
   clearFields();
@@ -63,8 +57,6 @@ function submit() {
 function createTable(book) {
   let table = document.getElementById("book-list");
 
-  const elems = [];
-
   const tr = document.createElement("tr");
   const tdTitle = document.createElement("td");
   const tdAuthor = document.createElement("td");
@@ -74,45 +66,43 @@ function createTable(book) {
   tdTitle.innerText = book.title;
   tdAuthor.innerText = book.author;
   tdISBN.innerText = book.isbn;
-  tdDelete.innerHTML = book.del;
 
-  elems.push(tdTitle);
-  elems.push(tdAuthor);
-  elems.push(tdISBN);
-  elems.push(tdDelete);
+  const deleteButton = document.createElement("button");
+  deleteButton.innerText = "X";
+  deleteButton.addEventListener("click", () => deleteBook(book.isbn));
+  tdDelete.appendChild(deleteButton);
 
-  elems.forEach((el) => tr.appendChild(el));
+  tr.appendChild(tdTitle);
+  tr.appendChild(tdAuthor);
+  tr.appendChild(tdISBN);
+  tr.appendChild(tdDelete);
 
   table.appendChild(tr);
-
-  tdDelete.addEventListener("click", () => deleteBook(tr));
 }
 
-function deleteBook(tr) {
-  let cells = tr.querySelectorAll("td");
-  let isbn = cells[2].textContent;
-
+function deleteBook(isbn) {
+  // fix
   bookArr = bookArr.filter((book) => book.isbn !== isbn);
-  tr.remove();
+  
+  // fix
   localStorage.setItem("books", JSON.stringify(bookArr));
+
+  // fix
+  const table = document.getElementById("book-list");
+  const rows = Array.from(table.rows);
+  rows.forEach((row) => {
+    if (row.cells[2].innerText === isbn) {
+      row.remove();
+    }
+  });
+
   toast("Book deleted successfully");
 }
 
-// function deleteBook(tr, tdTitle, tdAuthor, tdISBN, tdDelete) {
-//   localStorage.clear(tdTitle, tdAuthor, tdISBN, tdDelete);
-//   localStorage.clear(tr);
-//   tdTitle.remove();
-//   tdAuthor.remove();
-//   tdISBN.remove();
-//   tdDelete.remove();
-//   tr.remove();
-//   refreshPage();
-// }
-
 function clearFields() {
-  (document.getElementById("title").value = ""),
-    (document.getElementById("author").value = ""),
-    (document.getElementById("isbn").value = "");
+  document.getElementById("title").value = "";
+  document.getElementById("author").value = "";
+  document.getElementById("isbn").value = "";
 }
 
 function refreshPage() {
