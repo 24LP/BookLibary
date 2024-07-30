@@ -1,0 +1,99 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;500&display=swap");
+
+* {
+  font-family: "poppins";
+  margin: 0;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 0%;
+}
+
+body {
+  background-color: #fff8dd;
+  background-size: cover;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+.container {
+  margin-top: 5%;
+  text-align: center;
+  color: white;
+  background-color: rgb(0, 0, 0);
+  background-size: cover;
+}
+
+#submit {
+  margin-bottom: 0.5cm;
+  margin-top: 0.5cm;
+  display: inline-block;
+  height: 38px;
+  padding: 0 50px;
+  color: #000000;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 38px;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  background-color: white;
+  border-radius: 100px;
+  border: 1px solid #bbb;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+td {
+  margin: 0;
+  padding: 10px;
+  text-align: center;
+  border-collapse: collapse;
+  border-style: none;
+  border-bottom: 1px solid #000000;
+  width: 40%;
+  box-sizing: border-box;
+}
+#del {
+  display: inline-block;
+  padding: 2px 20px;
+  font-size: 15px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #f02a2a;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 6px #681414;
+}
+#del:hover {
+  background-color: #ac1f1f;
+}
+#del:active {
+  background-color: #ac1f1f;
+  box-shadow: 0 5px #681414;
+  transform: translateY(4px);
+}
+
+.toast {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  padding: 1rem;
+  background-color: #333;
+  color: #fff;
+  border-radius: 0.25rem;
+  z-index: 9999;
+}
+
+.toast.toast-success {
+  background-color: green;
+}
+
+.toast.toast-delete {
+  background-color: red;
+}
